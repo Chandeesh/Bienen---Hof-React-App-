@@ -1,1 +1,1 @@
-# Bienen---Hof-React-App-
+# Bienen-Hof React App
