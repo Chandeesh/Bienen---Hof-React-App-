@@ -66,10 +66,9 @@ export const login = (username, password) => (dispatch) => {
 
 export const initiateResetPassword = (emailId) => (dispatch) => {
   return AuthService.initiateResetPassword(emailId).then(
-    (data) => {
+    () => {
       dispatch({
-        type: SET_MESSAGE,
-        payload: data
+        type: ACTIVATION_SUCCESS,
       });
       return Promise.resolve();
     },

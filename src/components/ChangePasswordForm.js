@@ -5,6 +5,8 @@ import { updatePassword } from "../actions/auth";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ChangePasswordForm = (props) => {
     const dispatch = useDispatch();
@@ -20,8 +22,15 @@ const ChangePasswordForm = (props) => {
         console.log("About to call update password");
         dispatch(updatePassword(emailId, password))
             .then(() => {
+                toast("Your password has been changed!", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    });
                 props.history.push("/login");
-                window.location.reload();
             })
             .catch((err) => {
             });
@@ -56,7 +65,7 @@ const ChangePasswordForm = (props) => {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="confirm-password">{t("confirm password")}</label>
+                        <label htmlFor="confirm-password">{t("confirmPassword")}</label>
                         <Input
                             type="password"
                             className="form-control"
@@ -71,7 +80,7 @@ const ChangePasswordForm = (props) => {
                             {loading && (
                                 <span className="spinner-border spinner-grow-sm"></span>
                             )}{'     '}
-                            <span>Submit</span>
+                            <span>{t("submit")}</span>
                         </button>
                     </div>
                     {(password !== confirmPassword) ? <div className="form-group" style={{ paddingTop: '15px' }}>

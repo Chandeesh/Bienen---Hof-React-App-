@@ -16,11 +16,21 @@
     "footerContent": "Re Engineering of Deutscher ImkerBund App to a Web App using React JS and Fastify for the fulfillment of Master Thesis by Hof University Student - Chandeesh",
     "username": "Username",
     "password": "Password",
+    "confirmPassword": "Confirm Password",
     "forgotPassword": "Forgot Password?",
     "noAccount": "Don't have an account yet?",
     "overview": "Overview",
     "contacts": "Contacts",
     "mails": "Mails",
     "settings": "Settings",
-    "logOut": "Logout"
+    "logOut": "Logout",
+    "manageBeesData": "Manage Bees Data",
+    "storeEvaluationData": "Store Evaluation Data",
+    "monitorActivities": "Monitor Activities",
+    "copyright": "Copyright: ",
+    "emailUs": "Email Us",
+    "confirmPassword": "Confirm Password",
+    "close": "Close",
+    "submit": "Submit",
+    "enterEmail": "Enter your email address"
   }

@@ -26,6 +26,8 @@ import Offcanvas from 'react-bootstrap/Offcanvas'
 import { Redirect } from 'react-router-dom';
 import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const [show, setShow] = useState(false);
@@ -42,7 +44,7 @@ const App = () => {
     });
   }, [dispatch]);
 
-  const logOut = useCallback(()=> {
+  const logOut = useCallback(() => {
     dispatch(logout());
     return <Redirect to="/login" />;
   }, [dispatch]);
@@ -188,22 +190,22 @@ const App = () => {
                   <h6 className='text-uppercase fw-bold mb-4'>Available Features</h6>
                   <p>
                     <a href='#!' className='text-reset'>
-                      My Bees
+                      {t("myBees")}
                     </a>
                   </p>
                   <p>
                     <a href='#!' className='text-reset'>
-                      Manage Bees Data
+                      {t("manageBeesData")}
                     </a>
                   </p>
                   <p>
                     <a href='#!' className='text-reset'>
-                      Store Evaluation Data
+                      {t("storeEvaluationData")}
                     </a>
                   </p>
                   <p>
                     <a href='#!' className='text-reset'>
-                      Monitor Activities
+                      {t("monitorActivities")}
                     </a>
                   </p>
                 </div>
@@ -214,10 +216,10 @@ const App = () => {
                     Alfons-Goppel-Platz 1, 95028 Hof
                   </p>
                   <p>
-                    <a href='mailto:ckuduvarajendraselva@hof-university.de' class="hyperlinks">Email Us</a>
+                    <a href='mailto:ckuduvarajendraselva@hof-university.de' class="hyperlinks">{t("emailUs")}</a>
                   </p>
                   <p>
-                    Contact No: +49 157 7849 0376
+                    {t("contact")}: +49 157 7849 0376
                   </p>
                 </div>
               </div>
@@ -225,13 +227,15 @@ const App = () => {
           </section>
 
           <div className='text-center p-4' style={{ backgroundColor: '#ffcc00' }}>
-            {'© 2022 Copyright: '}
+            {'©2022 '}
+            {t("copyright")}
             <a href='mailto:ckuduvarajendraselva@hof-university.de' class="hyperlinks">
               Chandeesh Babu
             </a>
           </div>
         </MDBFooter>
-        <AuthVerify logOut={logOut}/>
+        <AuthVerify logOut={logOut} />
+        <ToastContainer />
       </div>
     </Router>
   );

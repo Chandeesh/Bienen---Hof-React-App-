@@ -9,7 +9,8 @@ import { useTranslation } from 'react-i18next';
 import {
   Button, Modal, Form as ModalForm
 } from "react-bootstrap";
-import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const required = (value) => {
   if (!value) {
@@ -73,12 +74,18 @@ const Login = (props) => {
     e.preventDefault();
 
     dispatch(initiateResetPassword(emailIdForgotPwd))
-      .then((res) => {
-        console.log(res);
-        setShowResetPassword(false)
+      .then(() => {
+        toast("An email has been sent. Please click on the link to reset the password!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+        });
+        setShowResetPassword(false);
       })
       .catch((err) => {
-        console.log(err);
       });
 
   };
@@ -141,7 +148,7 @@ const Login = (props) => {
       </div>
       <Modal show={showResetPassword} onHide={handleShowResetPasswordOff}>
         <Modal.Header closeButton>
-          <Modal.Title>Enter your email address</Modal.Title>
+          <Modal.Title>{t("enterEmail")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ModalForm ref={modalForm}>
@@ -157,25 +164,14 @@ const Login = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="warning" onClick={handleShowResetPasswordOff}>
-            Close
+            {t("close")}
           </Button>
           <Button variant="warning" onClick={handleResetPassword}>
-            Update
+            {t("submit")}
           </Button>
 
         </Modal.Footer>
       </Modal>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </div>
   );
 };

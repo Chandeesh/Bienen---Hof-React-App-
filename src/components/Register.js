@@ -50,8 +50,12 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
   const { message } = useSelector(state => state.message);
+  const [validateMsg, setValidateMsg] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
   const onChangeUsername = (e) => {
     const username = e.target.value;
@@ -65,8 +69,18 @@ const Register = () => {
     const password = e.target.value;
     setPassword(password);
   };
+  const onChangeConfirmPassword = (e) => {
+    const confirmPassword = e.target.value;
+    setConfirmPassword(confirmPassword);
+    if (password !== confirmPassword) {
+      setValidateMsg("Passwords does not match!")
+    } else {
+      setValidateMsg("")
+    }
+  };
   const handleRegister = (e) => {
     e.preventDefault();
+    setLoading(true);
     setSuccessful(false);
     form.current.validateAll();
     if (checkBtn.current.context._errors.length === 0) {
@@ -76,7 +90,10 @@ const Register = () => {
         })
         .catch(() => {
           setSuccessful(false);
+          setLoading(false);
         });
+    } else {
+      setLoading(true);
     }
   };
   return (
@@ -124,16 +141,38 @@ const Register = () => {
                 />
               </div>
               <div className="form-group">
-              <label htmlFor="password"></label>
-              <label htmlFor="password">{t("noAccount")}</label>
-              <label htmlFor="password"></label>
-                <button className="btn btn-warning btn-block">{t("signup")}</button>
+                <label htmlFor="password">{t("confirmPassword")}</label>
+                <Input
+                  type="password"
+                  className="form-control"
+                  name="confirmPassword"
+                  value={confirmPassword}
+                  onChange={onChangeConfirmPassword}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password"></label>
+                <label htmlFor="password">{t("noAccount")}</label>
+                <label htmlFor="password"></label>
+                <button className="btn btn-warning btn-block" disabled={loading}>
+                  {loading && (
+                    <span className="spinner-border spinner-grow-sm"></span>
+                  )}{'     '}
+                  <span>{t("signup")}</span>
+                </button>
+              </div>
+            </div>
+          )}
+          {validateMsg && (
+            <div className="form-group" style={{ paddingTop: '15px' }}>
+              <div className="alert alert-danger" role="alert">
+                {validateMsg}
               </div>
             </div>
           )}
           {message && (
-            <div className="form-group">
-              <div className={ successful ? "alert alert-success" : "alert alert-danger" } role="alert">
+            <div className="form-group" style={{ paddingTop: '15px' }}>
+              <div className="alert alert-success" role="alert">
                 {message}
               </div>
             </div>

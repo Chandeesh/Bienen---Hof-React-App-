@@ -109,6 +109,7 @@ const VarroaDiagnose = (props) => {
         dispatch(deleteMassNahmenData(props.data._id,id, "varroaDiagnose"))
             .then(() => {
                 handleShowDeleteOff();
+                window.location.reload(false);
             })
             .catch((err) => {
                 console.log(err);

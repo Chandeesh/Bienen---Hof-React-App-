@@ -22,5 +22,14 @@
     "contacts": "Kontakte",
     "mails": "Mails",
     "settings": "Einstellungen",
-    "logOut": "Abmeldung"
+    "logOut": "Abmeldung",
+    "manageBeesData": "Bienen-Daten verwalten",
+    "storeEvaluationData": "Bewertungsdaten speichern",
+    "monitorActivities": "Aktivitäten überwachen",
+    "copyright": "Urheberrecht: ",
+    "emailUs": "Mailen Sie uns",
+    "confirmPassword": "Passwort bestätigen",
+    "close": "Schließen",
+    "submit": "Einreichen",
+    "enterEmail": "Geben Sie Ihre E-Mail Adresse ein"
 }
